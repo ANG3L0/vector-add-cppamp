@@ -1,1 +1,1 @@
-# vector-add-cppamp >> README.md
+# vector-add-cppamp
