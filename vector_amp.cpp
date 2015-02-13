@@ -7,10 +7,9 @@ void vecAdd(float* in1, float* in2, float* out, int N){
   array_view<float,1> in1V(N,in1), in2V(N,in2);
   array_view<float,1> outV(N,out);
   outV.discard_data(); //ignore existing data as we'll overwrite it anyway
-  parallel_for_each(outV.get_extent(), [=](index<1> i){
+  parallel_for_each(outV.get_extent(), [=](index<1> i)
       restrict(amp) { //only AMP can do this
       outV[i] = in1V[i] + in2V[i];
-      }
       });
   outV.synchronize(); //tell everyone i'm done so dependent processing will wait.
 
